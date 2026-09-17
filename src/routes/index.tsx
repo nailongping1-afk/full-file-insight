@@ -137,7 +137,14 @@ function QuotaCard({ conn, onChanged }: { conn: Connection; onChanged: () => voi
               <div key={q.name} className="mb-3 last:mb-0">
                 <div className="mb-1 flex items-center justify-between gap-2">
                   <span className="truncate text-[11.5px] text-muted-foreground">{q.name}</span>
-                  <span className={`text-[11.5px] font-medium text-${pctTone(pct)}`}>
+                  <span
+                    className={cn(
+                      "text-[11.5px] font-medium",
+                      pctTone(pct) === "success" && "text-success",
+                      pctTone(pct) === "warning" && "text-warning",
+                      pctTone(pct) === "danger" && "text-danger",
+                    )}
+                  >
                     {q.unlimited ? "∞" : `${pct}%`}
                   </span>
                 </div>
