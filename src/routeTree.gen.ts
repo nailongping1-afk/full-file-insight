@@ -15,6 +15,7 @@ import { Route as EndpointRouteImport } from './routes/endpoint'
 import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as ProvidersRouteImport } from './routes/providers'
 import { Route as ProxyPoolsRouteImport } from './routes/proxy-pools'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as UsageRouteImport } from './routes/usage'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const ProxyPoolsRoute = ProxyPoolsRouteImport.update({
   path: '/proxy-pools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UsageRoute = UsageRouteImport.update({
   id: '/usage',
   path: '/usage',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/playground': typeof PlaygroundRoute
   '/providers': typeof ProvidersRoute
   '/proxy-pools': typeof ProxyPoolsRoute
+  '/settings': typeof SettingsRoute
   '/usage': typeof UsageRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/playground': typeof PlaygroundRoute
   '/providers': typeof ProvidersRoute
   '/proxy-pools': typeof ProxyPoolsRoute
+  '/settings': typeof SettingsRoute
   '/usage': typeof UsageRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/playground': typeof PlaygroundRoute
   '/providers': typeof ProvidersRoute
   '/proxy-pools': typeof ProxyPoolsRoute
+  '/settings': typeof SettingsRoute
   '/usage': typeof UsageRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/providers'
     | '/proxy-pools'
+    | '/settings'
     | '/usage'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/providers'
     | '/proxy-pools'
+    | '/settings'
     | '/usage'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/playground'
     | '/providers'
     | '/proxy-pools'
+    | '/settings'
     | '/usage'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   PlaygroundRoute: typeof PlaygroundRoute
   ProvidersRoute: typeof ProvidersRoute
   ProxyPoolsRoute: typeof ProxyPoolsRoute
+  SettingsRoute: typeof SettingsRoute
   UsageRoute: typeof UsageRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProxyPoolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/usage': {
       id: '/usage'
       path: '/usage'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlaygroundRoute: PlaygroundRoute,
   ProvidersRoute: ProvidersRoute,
   ProxyPoolsRoute: ProxyPoolsRoute,
+  SettingsRoute: SettingsRoute,
   UsageRoute: UsageRoute,
 }
 export const routeTree = rootRouteImport
