@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-card", className)}>{children}</div>
+    <div className={cn("rounded-lg border border-border bg-card shadow-sm", className)}>{children}</div>
   );
 }
 
 export function SectionTitle({ children }: { children: ReactNode }) {
-  return <h2 className="text-[13px] font-semibold tracking-tight">{children}</h2>;
+  return <h2 className="text-[18px] font-semibold tracking-tight">{children}</h2>;
 }
 
 type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -22,10 +22,10 @@ export function Btn({ variant = "outline", size = "md", className, ...props }: B
     <button
       {...props}
       className={cn(
-        "focus-ring inline-flex items-center justify-center gap-1.5 rounded-lg border text-[12px] font-medium transition-colors active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50",
-        size === "sm" && "h-7 px-2",
-        size === "md" && "h-8 px-3",
-        size === "icon" && "h-7 w-7 p-0",
+        "focus-ring inline-flex items-center justify-center gap-2 rounded-md border text-[13px] font-medium transition-colors active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50",
+        size === "sm" && "h-9 px-3",
+        size === "md" && "h-10 px-4",
+        size === "icon" && "h-9 w-9 p-0",
         variant === "primary" && "border-primary bg-primary text-primary-foreground hover:opacity-90",
         variant === "outline" && "border-border bg-transparent hover:bg-hover",
         variant === "ghost" && "border-transparent bg-transparent text-muted-foreground hover:bg-hover hover:text-foreground",
@@ -41,7 +41,7 @@ export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElem
     <input
       {...props}
       className={cn(
-        "focus-ring h-8 w-full rounded-lg border border-border bg-hover px-2.5 text-[12px] placeholder:text-dim",
+        "focus-ring h-10 w-full rounded-md border border-border bg-hover px-3 text-[13px] placeholder:text-dim",
         className,
       )}
     />
@@ -57,7 +57,7 @@ export function Select({
     <select
       {...props}
       className={cn(
-        "focus-ring h-8 rounded-lg border border-border bg-card px-2 text-[12px]",
+        "focus-ring h-10 rounded-md border border-border bg-card px-3 text-[13px]",
         className,
       )}
     >
@@ -76,7 +76,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium",
+        "inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-medium",
         tone === "muted" && "bg-hover text-muted-foreground",
         tone === "success" && "bg-success-subtle text-success",
         tone === "warning" && "bg-warning-subtle text-warning",
@@ -152,7 +152,7 @@ export function ProgressBar({ value, tone }: { value: number; tone: "success" | 
 
 export function LoadingState({ label = "Loading" }: { label?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 py-10 text-[12px] text-muted-foreground">
+    <div className="flex items-center justify-center gap-2 py-14 text-[13px] text-muted-foreground">
       <Loader2 className="h-3.5 w-3.5 animate-spin" />
       {label}
     </div>
@@ -161,7 +161,7 @@ export function LoadingState({ label = "Loading" }: { label?: string }) {
 
 export function EmptyState({ label }: { label: string }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 py-10 text-[12px] text-dim">
+    <div className="flex flex-col items-center justify-center gap-2 py-14 text-[13px] text-dim">
       <Inbox className="h-4 w-4" />
       {label}
     </div>
@@ -170,8 +170,8 @@ export function EmptyState({ label }: { label: string }) {
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 py-10 text-center">
-      <p className="font-mono text-[11.5px] text-danger">{message}</p>
+    <div className="flex min-h-36 flex-col items-center justify-center gap-3 py-12 text-center">
+      <p className="font-mono text-[13px] text-danger">{message}</p>
       {onRetry && (
         <Btn size="sm" onClick={onRetry}>
           <RefreshCw className="h-3 w-3" />
@@ -194,16 +194,16 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 md:px-6">
-      <div className="flex items-center gap-2.5">
-        <span className="text-primary-light [&>svg]:h-[18px] [&>svg]:w-[18px]">{icon}</span>
+    <header className="grid min-h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-border px-5 py-2 md:px-7">
+      <div className="flex min-w-0 items-center gap-3">
+        <span className="shrink-0 text-primary-light [&>svg]:h-5 [&>svg]:w-5">{icon}</span>
         <div className="leading-tight">
-          <h1 className="text-[15px] font-semibold tracking-tight">{title}</h1>
-          {subtitle && <p className="text-[11.5px] text-dim">{subtitle}</p>}
+          <h1 className="truncate text-[20px] font-semibold tracking-tight">{title}</h1>
+          {subtitle && <p className="truncate text-[13px] text-muted-foreground">{subtitle}</p>}
         </div>
       </div>
-      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
-    </div>
+      {actions && <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">{actions}</div>}
+    </header>
   );
 }
 
@@ -231,7 +231,7 @@ export function Modal({
         aria-modal="true"
         aria-label={title}
         onClick={(e) => e.stopPropagation()}
-        className="w-full rounded-t-xl border border-border bg-card p-4 sm:max-w-md sm:rounded-xl"
+        className="w-full rounded-t-lg border border-border bg-card p-5 sm:max-w-md sm:rounded-lg"
       >
         <h3 className="mb-3 text-[13px] font-semibold">{title}</h3>
         {children}
