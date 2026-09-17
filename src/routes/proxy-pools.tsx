@@ -65,7 +65,7 @@ function ProxyPoolsView() {
       <PageHeader
         icon={<Network />}
         title="Proxy Pools"
-        subtitle="Relays"
+        subtitle="Manage your proxy pool configurations"
         actions={
           <Btn size="sm" variant="primary" onClick={() => setOpen(true)}>
             <Plus className="h-3 w-3" />
@@ -74,7 +74,7 @@ function ProxyPoolsView() {
         }
       />
 
-      <div className="p-4 md:p-6">
+      <div className="mx-auto max-w-[900px] p-5 md:p-8">
         <Card>
           <div className="flex items-center gap-2 border-b border-border px-3 py-2">
             <p className="text-[12.5px] font-semibold">Pools</p>

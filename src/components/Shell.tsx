@@ -6,8 +6,6 @@ import {
   Boxes,
   Cable,
   ChevronDown,
-  Code2,
-  Cpu,
   Gauge,
   Grid2X2,
   KeyRound,
@@ -77,7 +75,7 @@ function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
         to={to}
         onClick={onNavigate}
         className={cn(
-          "focus-ring relative flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[12.5px] transition-colors",
+          "focus-ring relative flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] transition-colors",
           active
             ? "bg-primary-subtle font-medium text-primary-light"
             : "text-muted-foreground hover:bg-hover hover:text-foreground",

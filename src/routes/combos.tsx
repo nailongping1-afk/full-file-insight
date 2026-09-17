@@ -59,8 +59,8 @@ function CombosView() {
     <div>
       <PageHeader
         icon={<Share2 />}
-        title="Combos"
-        subtitle="Model chains"
+        title="Combo & Vision Adapter"
+        subtitle="Build model chains and fallback strategies"
         actions={
           <Btn size="sm" variant="primary" onClick={() => setOpen(true)}>
             <Plus className="h-3 w-3" />
@@ -69,7 +69,7 @@ function CombosView() {
         }
       />
 
-      <div className="p-4 md:p-6">
+      <div className="mx-auto max-w-[1180px] p-5 md:p-8">
         {combos.isLoading && <LoadingState label="Loading combos" />}
         {combos.isError && (
           <Card className="p-0">

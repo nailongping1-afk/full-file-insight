@@ -82,9 +82,9 @@ function PlaygroundView() {
 
   return (
     <div>
-      <PageHeader icon={<Bot />} title="Playground" subtitle="Chat" />
+      <PageHeader icon={<Bot />} title="Playground" subtitle="Test AI models through your gateway" />
 
-      <div className="grid grid-cols-1 gap-4 p-4 md:p-6 lg:grid-cols-[240px_1fr]">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-4 p-5 md:p-8 lg:grid-cols-[280px_1fr]">
         <Card className="h-fit p-3">
           <p className="mb-1 text-[11px] text-dim">Model</p>
           {models.isError ? (

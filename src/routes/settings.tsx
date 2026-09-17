@@ -87,9 +87,9 @@ function SettingsView() {
 
   return (
     <div>
-      <PageHeader icon={<SettingsIcon />} title="Settings" subtitle="System" />
+      <PageHeader icon={<SettingsIcon />} title="Settings" subtitle="System preferences and security" />
 
-      <div className="grid grid-cols-1 gap-4 p-4 md:p-6 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-4 p-5 md:p-8 lg:grid-cols-2">
         <Card>
           <div className="border-b border-border px-3 py-2">
             <SectionTitle>System</SectionTitle>

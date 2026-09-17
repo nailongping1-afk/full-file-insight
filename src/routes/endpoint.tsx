@@ -77,7 +77,7 @@ function EndpointView() {
       <PageHeader
         icon={<KeyRound />}
         title="Endpoint"
-        subtitle="Gateway"
+        subtitle="Manage gateway endpoints and API keys"
         actions={
           <Btn size="sm" variant="primary" onClick={() => setOpen(true)}>
             <Plus className="h-3 w-3" />
@@ -86,7 +86,7 @@ function EndpointView() {
         }
       />
 
-      <div className="p-4 md:p-6">
+      <div className="mx-auto max-w-[1180px] p-5 md:p-8">
         <Card className="mb-4 p-3">
           <div className="flex items-center justify-between gap-2">
             <code className="truncate font-mono text-[12.5px]">{base}</code>

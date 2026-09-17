@@ -134,10 +134,10 @@ function ProvidersView() {
 
   return (
     <div>
-      <PageHeader icon={<Server />} title="Providers" subtitle="Connections" />
+      <PageHeader icon={<Server />} title="Providers" subtitle="Manage your AI provider connections" />
 
-      <div className="p-4 md:p-6">
-        <Card className="mb-4 flex flex-wrap items-center gap-2 p-2">
+      <div className="mx-auto max-w-[1180px] p-5 md:p-8">
+        <div className="mb-7 flex flex-wrap items-center justify-end gap-2">
           <div className="relative min-w-[160px] flex-1">
             <Search className="pointer-events-none absolute top-1/2 left-2 h-3.5 w-3.5 -translate-y-1/2 text-dim" />
             <Input
@@ -156,12 +156,12 @@ function ProvidersView() {
             <Plus className="h-3 w-3" />
             Add custom
           </Btn>
-        </Card>
+        </div>
 
         {showCustom && (
           <section className="mb-6">
             <div className="mb-2 flex items-center gap-2">
-              <SectionTitle>Custom nodes</SectionTitle>
+              <SectionTitle>Custom Providers (OpenAI/Anthropic Compatible)</SectionTitle>
               {nodes.isSuccess && <Badge tone="muted">{nodes.data.length}</Badge>}
             </div>
             {nodes.isLoading && <LoadingState label="Loading nodes" />}
@@ -201,8 +201,8 @@ function ProvidersView() {
 
         {showConnected && (
           <section>
-            <div className="mb-2 flex items-center gap-2">
-              <SectionTitle>Providers</SectionTitle>
+            <div className="mb-3 flex items-center gap-2">
+              <SectionTitle>OAuth Providers</SectionTitle>
               {list.isSuccess && <Badge tone="muted">{grouped.length}</Badge>}
             </div>
             {list.isLoading && <LoadingState label="Loading providers" />}

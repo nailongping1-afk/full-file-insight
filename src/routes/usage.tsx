@@ -87,8 +87,8 @@ function UsageView() {
     <div>
       <PageHeader
         icon={<BarChart3 />}
-        title="Usage"
-        subtitle="Tokens & cost"
+        title="Usage & Analytics"
+        subtitle="Monitor your API usage, token consumption, and request logs"
         actions={
           <div className="flex items-center gap-2">
             <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
@@ -111,7 +111,7 @@ function UsageView() {
         }
       />
 
-      <div className="p-4 md:p-6">
+      <div className="mx-auto max-w-[1180px] p-5 md:p-8">
         {stats.isLoading && <LoadingState label="Loading usage" />}
         {stats.isError && (
           <Card className="mb-4 p-0">
@@ -120,10 +120,10 @@ function UsageView() {
         )}
         {stats.isSuccess && (
           <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
-            <Stat label="Requests" value={fmt(stats.data.totalRequests)} />
-            <Stat label="Input tokens" value={fmt(stats.data.totalInputTokens)} tone="text-primary-light" />
-            <Stat label="Cached" value={fmt(stats.data.cachedTokens)} tone="text-warning" />
-            <Stat label="Output" value={fmt(stats.data.outputTokens)} tone="text-success" />
+            <Stat label="Total requests" value={fmt(stats.data.totalRequests)} />
+            <Stat label="Total input tokens" value={fmt(stats.data.totalInputTokens)} tone="text-primary-light" />
+            <Stat label="Cached tokens" value={fmt(stats.data.cachedTokens)} tone="text-warning" />
+            <Stat label="Output tokens" value={fmt(stats.data.outputTokens)} tone="text-success" />
             <Stat
               label="Est. cost"
               value={`~$${(stats.data.estimatedCostUsd ?? 0).toFixed(2)}`}
