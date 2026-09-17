@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CombosRouteImport } from './routes/combos'
 import { Route as EndpointRouteImport } from './routes/endpoint'
+import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as ProvidersRouteImport } from './routes/providers'
+import { Route as ProxyPoolsRouteImport } from './routes/proxy-pools'
 import { Route as UsageRouteImport } from './routes/usage'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,9 +32,19 @@ const EndpointRoute = EndpointRouteImport.update({
   path: '/endpoint',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProvidersRoute = ProvidersRouteImport.update({
   id: '/providers',
   path: '/providers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProxyPoolsRoute = ProxyPoolsRouteImport.update({
+  id: '/proxy-pools',
+  path: '/proxy-pools',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UsageRoute = UsageRouteImport.update({
@@ -45,14 +57,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/combos': typeof CombosRoute
   '/endpoint': typeof EndpointRoute
+  '/playground': typeof PlaygroundRoute
   '/providers': typeof ProvidersRoute
+  '/proxy-pools': typeof ProxyPoolsRoute
   '/usage': typeof UsageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/combos': typeof CombosRoute
   '/endpoint': typeof EndpointRoute
+  '/playground': typeof PlaygroundRoute
   '/providers': typeof ProvidersRoute
+  '/proxy-pools': typeof ProxyPoolsRoute
   '/usage': typeof UsageRoute
 }
 export interface FileRoutesById {
@@ -60,22 +76,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/combos': typeof CombosRoute
   '/endpoint': typeof EndpointRoute
+  '/playground': typeof PlaygroundRoute
   '/providers': typeof ProvidersRoute
+  '/proxy-pools': typeof ProxyPoolsRoute
   '/usage': typeof UsageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/combos' | '/endpoint' | '/providers' | '/usage'
+  fullPaths:
+    | '/'
+    | '/combos'
+    | '/endpoint'
+    | '/playground'
+    | '/providers'
+    | '/proxy-pools'
+    | '/usage'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/combos' | '/endpoint' | '/providers' | '/usage'
-  id: '__root__' | '/' | '/combos' | '/endpoint' | '/providers' | '/usage'
+  to:
+    | '/'
+    | '/combos'
+    | '/endpoint'
+    | '/playground'
+    | '/providers'
+    | '/proxy-pools'
+    | '/usage'
+  id:
+    | '__root__'
+    | '/'
+    | '/combos'
+    | '/endpoint'
+    | '/playground'
+    | '/providers'
+    | '/proxy-pools'
+    | '/usage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CombosRoute: typeof CombosRoute
   EndpointRoute: typeof EndpointRoute
+  PlaygroundRoute: typeof PlaygroundRoute
   ProvidersRoute: typeof ProvidersRoute
+  ProxyPoolsRoute: typeof ProxyPoolsRoute
   UsageRoute: typeof UsageRoute
 }
 
@@ -102,11 +144,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EndpointRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/providers': {
       id: '/providers'
       path: '/providers'
       fullPath: '/providers'
       preLoaderRoute: typeof ProvidersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proxy-pools': {
+      id: '/proxy-pools'
+      path: '/proxy-pools'
+      fullPath: '/proxy-pools'
+      preLoaderRoute: typeof ProxyPoolsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/usage': {
@@ -123,7 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CombosRoute: CombosRoute,
   EndpointRoute: EndpointRoute,
+  PlaygroundRoute: PlaygroundRoute,
   ProvidersRoute: ProvidersRoute,
+  ProxyPoolsRoute: ProxyPoolsRoute,
   UsageRoute: UsageRoute,
 }
 export const routeTree = rootRouteImport
