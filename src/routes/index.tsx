@@ -4,6 +4,7 @@ import { Gauge, Pencil, RefreshCw, Timer, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { api, errorLabel } from "@/lib/api";
 import type { Connection, QuotaItem } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import {
   Badge,
   Btn,
@@ -186,10 +187,10 @@ function QuotaView() {
 
   return (
     <div>
-      <PageHeader icon={<Gauge />} title="Quota" subtitle="Limits" />
+      <PageHeader icon={<Gauge />} title="Quota Tracker" subtitle="Track and manage your API quota limits" />
 
-      <div className="p-4 md:p-6">
-        <Card className="mb-4 flex flex-wrap items-center gap-2 p-2">
+      <div className="mx-auto max-w-[1180px] p-5 md:p-8">
+        <div className="mb-5 flex flex-wrap items-center justify-end gap-2">
           <Select value={provider} onChange={(e) => setProvider(e.target.value)}>
             <option value="all">All providers</option>
             {(list.data?.providerOptions ?? []).map((p) => (
@@ -203,7 +204,7 @@ function QuotaView() {
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
           </Select>
-          <div className="min-w-[140px] flex-1">
+          <div className="min-w-[180px] md:max-w-[260px]">
             <Input
               placeholder="Search"
               value={search}
@@ -225,13 +226,13 @@ function QuotaView() {
           {list.isSuccess && (
             <Badge tone="muted">{list.data.pagination?.total ?? connections.length} accounts</Badge>
           )}
-        </Card>
+        </div>
 
         {list.isLoading && <LoadingState label="Loading quota" />}
         {list.isError && <ErrorState message={errorLabel(list.error)} onRetry={() => list.refetch()} />}
         {list.isSuccess && connections.length === 0 && <EmptyState label="No accounts" />}
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {connections.map((c) => (
             <QuotaCard key={c.id} conn={c} onChanged={refresh} />
           ))}
