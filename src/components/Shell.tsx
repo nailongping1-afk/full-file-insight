@@ -52,7 +52,7 @@ function useTheme() {
   return { dark, toggle };
 }
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const item = (to: string, label: string, Icon: typeof Gauge) => {
@@ -89,7 +89,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarBody({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const health = useQuery({
     queryKey: ["health"],
     queryFn: api.health,
