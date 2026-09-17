@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CombosRouteImport } from './routes/combos'
+import { Route as EndpointRouteImport } from './routes/endpoint'
 import { Route as ProvidersRouteImport } from './routes/providers'
+import { Route as UsageRouteImport } from './routes/usage'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +25,58 @@ const CombosRoute = CombosRouteImport.update({
   path: '/combos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EndpointRoute = EndpointRouteImport.update({
+  id: '/endpoint',
+  path: '/endpoint',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProvidersRoute = ProvidersRouteImport.update({
   id: '/providers',
   path: '/providers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsageRoute = UsageRouteImport.update({
+  id: '/usage',
+  path: '/usage',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/combos': typeof CombosRoute
+  '/endpoint': typeof EndpointRoute
   '/providers': typeof ProvidersRoute
+  '/usage': typeof UsageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/combos': typeof CombosRoute
+  '/endpoint': typeof EndpointRoute
   '/providers': typeof ProvidersRoute
+  '/usage': typeof UsageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/combos': typeof CombosRoute
+  '/endpoint': typeof EndpointRoute
   '/providers': typeof ProvidersRoute
+  '/usage': typeof UsageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/combos' | '/providers'
+  fullPaths: '/' | '/combos' | '/endpoint' | '/providers' | '/usage'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/combos' | '/providers'
-  id: '__root__' | '/' | '/combos' | '/providers'
+  to: '/' | '/combos' | '/endpoint' | '/providers' | '/usage'
+  id: '__root__' | '/' | '/combos' | '/endpoint' | '/providers' | '/usage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CombosRoute: typeof CombosRoute
+  EndpointRoute: typeof EndpointRoute
   ProvidersRoute: typeof ProvidersRoute
+  UsageRoute: typeof UsageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CombosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/endpoint': {
+      id: '/endpoint'
+      path: '/endpoint'
+      fullPath: '/endpoint'
+      preLoaderRoute: typeof EndpointRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/providers': {
       id: '/providers'
       path: '/providers'
       fullPath: '/providers'
       preLoaderRoute: typeof ProvidersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/usage': {
+      id: '/usage'
+      path: '/usage'
+      fullPath: '/usage'
+      preLoaderRoute: typeof UsageRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +122,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CombosRoute: CombosRoute,
+  EndpointRoute: EndpointRoute,
   ProvidersRoute: ProvidersRoute,
+  UsageRoute: UsageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
