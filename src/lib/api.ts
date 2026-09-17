@@ -200,7 +200,7 @@ export async function streamChat(
     credentials: "include",
     headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
     body: JSON.stringify({ ...payload, stream: true }),
-    signal,
+    signal: signal ?? null,
   }).catch(() => {
     throw new ApiError(0, "Daemon tidak terjangkau");
   });
